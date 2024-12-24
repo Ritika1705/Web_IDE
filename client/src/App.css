@@ -4,9 +4,9 @@
 }
 
 .editor-container {
-  min-height: 60vh;
   display: flex;
 }
+
 
 .files {
   padding: 20px;
@@ -23,12 +23,138 @@
 
 li {
   list-style: none;
-  line-height: 24px;
+  line-height: 18px;
 }
 
-#terminal {
+.terminal-container {
   width: 100%;
   height: 100%;
-  background-color: red; /* Ensures text is visible */
-  color: white;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e; /* Dark background */
+  border: 2px solid #10b981; /* Green border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  overflow: hidden; /* Ensure content doesn't overflow the border */
+  position: relative; /* Ensure proper positioning for additional elements */
 }
+
+
+/* Styling for xterm.js terminal */
+.xterm {
+  font-family: "Fira Code", monospace; /* Modern coding font */
+  font-size: 14px;
+}
+
+.xterm .xterm-viewport {
+  background-color: #1e1e1e !important; /* Ensure consistent dark background */
+}
+
+.xterm .xterm-cursor {
+  background-color: #10b981 !important; /* Green cursor */
+}
+
+.xterm-viewport {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #10b981 #1e1e1e; /* Thumb and track colors */
+}
+
+.xterm-viewport::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background-color: #10b981; /* Thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb:hover {
+  background-color: #34d399; /* Hover color for thumb */
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+  background-color: #1e1e1e; /* Track color */
+}
+
+.terminal-header {
+  background-color: #333;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dot.red {
+  background-color: #ff5f56;
+}
+
+.dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.dot.green {
+  background-color: #27c93f;
+}
+
+/* Root tree container */
+.file-tree {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #d4d4d4;
+  padding: 0; /* No unnecessary padding */
+  margin: 0; /* No unnecessary margin */
+  overflow-y: auto;
+  background-color: transparent; /* Blend with the page */
+}
+
+/* Tree nodes */
+.file-tree-node {
+  display: flex;
+  flex-direction: column; /* Ensure child elements stack vertically */
+  align-items: flex-start;
+  margin-left: 10px; /* Indentation for hierarchy */
+  cursor: pointer;
+}
+
+.file-tree-node .node-name {
+  padding: 2px 0; /* Compact spacing */
+  margin: 0; /* Remove margin to keep compact */
+}
+
+/* Directory styling */
+.file-tree-node.directory .node-name {
+  font-weight: bold;
+  color: black; /* Green for directories */
+}
+
+/* File styling */
+.file-tree-node.file .node-name {
+  color: darkgray /* Default color for files */
+}
+
+/* Children nodes */
+.children {
+  margin: 0; /* No extra margin */
+  padding: 0; /* No extra padding */
+  list-style: none; /* Remove bullet points */
+  border-left: 1px solid #444; /* Add subtle tree line */
+}
+
+.children .child {
+  padding-left: 10px; /* Indentation for children */
+  margin: 2px 0; /* Compact vertical spacing */
+}
+
+/* Hover effects */
+.file-name:hover {
+  text-decoration: underline;
+}
+
