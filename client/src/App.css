@@ -1,0 +1,34 @@
+.playground-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container {
+  min-height: 60vh;
+  display: flex;
+}
+
+.files {
+  padding: 20px;
+  width: 10vw;
+}
+
+.editor {
+  width: 90vw;
+}
+
+.file-node {
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+  line-height: 24px;
+}
+
+#terminal {
+  width: 100%;
+  height: 100%;
+  background-color: red; /* Ensures text is visible */
+  color: white;
+}
