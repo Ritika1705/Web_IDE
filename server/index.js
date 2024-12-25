@@ -17,6 +17,7 @@ const ptyProcess = pty.spawn('bash', [], {
 });
 
 const app = express()
+const __dirname = path.resolve();
 const server = http.createServer(app);
 const io = new SocketServer({
     cors: '*'
@@ -61,6 +62,10 @@ app.get('/files/content', async (req, res) => {
     const content = await fs.readFile(`./user${path}`, 'utf-8')
     return res.json({ content })
 })
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/client/dist')));
+}
 
 server.listen(9000, () => console.log(`🐳 Docker server running on port 9000`))
 
