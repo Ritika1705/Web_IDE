@@ -4,12 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import FileTree from "./components/tree";
 import socket from "./socket";
 import AceEditor from "react-ace";
-
+import dotenv from "dotenv"
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-twilight";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { use } from "react";
+
 
 function App() {
 
@@ -17,11 +17,13 @@ function App() {
   const[selectedFile, setSelectedFile] = useState('');
   const[selectedFileContent, setSelectedFileContent] = useState('');
   const[code, setCode] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const isSaved = selectedFileContent === code;
+  
 
   const getFileTree = async() => {
-    const response =  await fetch('http://localhost:9000/files')
+    const response =  await fetch(`${apiUrl}/files`);
     const result = await response.json()
     setFileTree(result.tree);
   };
@@ -29,11 +31,11 @@ function App() {
   const getFileContents = useCallback(async () => {
       if(!selectedFile) return;
       const response =  await fetch(
-        `http://localhost:9000/files/content?path=${selectedFile}`
+        `${apiUrl}/files/content?path=${selectedFile}`
       );
       const result = await response.json();
       setSelectedFileContent(result.content);
-  }, [selectedFile])
+  }, [selectedFile, apiUrl]);
 
   useEffect(() => {
     if(selectedFile) getFileContents();

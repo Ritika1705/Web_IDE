@@ -17,7 +17,6 @@ const ptyProcess = pty.spawn('bash', [], {
 });
 
 const app = express()
-const __dirname = path.resolve();
 const server = http.createServer(app);
 const io = new SocketServer({
     cors: '*'
