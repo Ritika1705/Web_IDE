@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import FileTree from "./components/tree";
 import socket from "./socket";
 import AceEditor from "react-ace";
-import dotenv from "dotenv"
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-twilight";
